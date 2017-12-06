@@ -5,7 +5,6 @@
 void ATankPlayerController::BeginPlay()
 {
 	Super::BeginPlay(); // Makes sure that parent implementation is being calling.
-	UE_LOG(LogTemp, Warning, TEXT("Player Controler BeginPlay"))
 
 	ATank* ControlledTank = GetControlledTank();
 	if (ControlledTank != nullptr)
@@ -16,6 +15,12 @@ void ATankPlayerController::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("ATankPlayerController::BeginPlay() - PlayerController not possesing a tank."))
 	}
+}
+
+void ATankPlayerController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+	UE_LOG(LogTemp, Warning, TEXT("ATankPlayerController::Tick()."))
 }
 
 ATank* ATankPlayerController::GetControlledTank() const
