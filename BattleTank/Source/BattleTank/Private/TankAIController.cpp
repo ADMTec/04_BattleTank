@@ -20,6 +20,23 @@ void ATankAIController::BeginPlay()
 
 }
 
+void ATankAIController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds); // I call base clase implementation just fot extend functionality
+
+	ATank * PlayerTank = GetPlayerTank();
+	
+	if (PlayerTank)
+	{
+		// TODO: move towards the player
+
+		// Aim towards the player
+		GetControlledTank()->AimAt(PlayerTank->GetActorLocation());
+
+		// Fire if ready
+	}
+}
+
 ATank * ATankAIController::GetControlledTank() const
 {
 	return Cast<ATank>(GetPawn());
@@ -30,7 +47,7 @@ ATank * ATankAIController::GetPlayerTank() const
 	APlayerController * PC = GetWorld()->GetFirstPlayerController();
 	if (PC != nullptr)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("ATankAIController::BeginPlay() - PlayerController name %s"), *PC->GetName())
+		//UE_LOG(LogTemp, Warning, TEXT("ATankAIController::BeginPlay() - PlayerController name %s"), *PC->GetName())
 	}
 	else
 	{
