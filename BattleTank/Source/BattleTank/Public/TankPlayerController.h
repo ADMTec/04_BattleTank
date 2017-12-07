@@ -28,4 +28,15 @@ private:
 	 * the crosshair intersects the world
 	 */
 	void AimTowardsCrosshair() const;
+
+	/* Get world location of linetrace through crosshair, true if hits landscape */
+	bool GetSightRayHitLocation(FVector& HitLocation) const;
+
+	bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairXLocation = 0.5f;
+
+	UPROPERTY(EditAnywhere)
+	float CrosshairYLocation = 0.33333f;
 };
