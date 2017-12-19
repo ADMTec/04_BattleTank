@@ -6,6 +6,7 @@
 #include "Runtime/Engine/Classes/Kismet/GameplayStatics.h"
 #include "Runtime/Engine/Classes/GameFramework/Actor.h"
 #include "TankBarrel.h"
+#include "Runtime/engine/Classes/Engine/World.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -66,6 +67,13 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
 		UE_LOG(LogTemp, Warning, TEXT("UTankAimingComponent::AimAt() - %s Aiming at %s"), *TankName, *AimDirection.ToString())
 
 		MoveBarrelTowards(HitLocation);
+		float Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: UTankAimingComponent::AimAt() - Aim solution found"), Time)
+	}
+	else
+	{
+		float Time = GetWorld()->GetTimeSeconds();
+		UE_LOG(LogTemp, Warning, TEXT("%f: UTankAimingComponent::AimAt() - No aim solve found"), Time)
 	}
 }
 
